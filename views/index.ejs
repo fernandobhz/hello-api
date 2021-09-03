@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <span id=xyz><b><%= title %></b></span></p>
+
+    <script>
+      const run = async () => {
+        const result = await axios.get('/json');
+        console.log(result);
+
+        const { data } = result;
+        console.log(data);
+
+        const { title } = data;
+        console.log(title);
+
+        xyz.innerHTML = `<b><i>${title}</i></b>`;
+
+        alert(title);
+      }
+
+      const runAjaxHtml = async () => {
+        const { data } = await axios.get('/ajaxhtml');
+        xyz.innerHTML = data;
+      }
+
+      
+      const run2 = async () => {
+        const { data: { title } } = await axios.get('/json');
+        alert(title);
+      }
+
+      const runJsonFake = async () => {
+        const { data: { title } } = await axios.get('/jsonfake');
+        alert(title);
+      }
+      
+      const runJsonFakeJQuery = () => {
+        $.get('/json', function(data) {
+          console.log(data);
+          alert(data.title);
+        });
+      }
+      
+      const runHtml = async () => {
+        const { data: { title } } = await axios.get('/');
+        alert(title);
+      }
+    </script>
+
+    <button onclick="run()">rodar</button>
+    <button onclick="run2()">rodar2</button>
+    <button onclick="runJsonFake()">runJsonFake</button>
+    <button onclick="runJsonFakeJQuery()">runJsonFakeJQuery</button>
+    <button onclick="runHtml()">runHtml</button>
+    <button onclick="runAjaxHtml()">runAjaxHtml</button>
+  </body>
+</html>
