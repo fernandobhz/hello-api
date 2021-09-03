@@ -27,7 +27,8 @@
       }
 
       const runAjaxHtml = async () => {
-        const { data } = await axios.get('/ajaxhtml');
+        const color = prompt('pergunta','purple');
+        const { data } = await axios.get(`/ajaxhtml?color=${color}`);
         xyz.innerHTML = data;
       }
 
@@ -50,7 +51,8 @@
       }
       
       const runHtml = async () => {
-        const { data: { title } } = await axios.get('/');
+        const color = prompt('pergunta','purple');
+        const { data: { title } } = await axios.get(`/?color=${color}`);
         alert(title);
       }
     </script>

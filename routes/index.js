@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/ajaxhtml', function(req, res, next) {
-  res.render('ajaxhtml', { title: 'Express' });
+  const { color } = req.query;
+  res.render('ajaxhtml', { title: 'Express', color });
 });
 
 /* GET home page. */
